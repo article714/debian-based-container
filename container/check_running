@@ -4,7 +4,7 @@
 
 export SVDIR=/container/services/
 
-services=$(find /container/services/* -type d -exec basename {} \;)
+services=$(find /container/services/ -maxdepth 1 -type d -exec basename {} \; | grep -v services)
 
 for srv in ${services}; do
     /usr/bin/sv status ${srv}
