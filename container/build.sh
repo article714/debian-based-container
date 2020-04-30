@@ -8,8 +8,7 @@ localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 export LANG=en_US.utf8
 
 # Install needed python-dev packages
-LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends runit rsyslog logrotate \
-   bind9 bind9utils bind9-dyndb-ldap
+LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends runit rsyslog logrotate
 
 # Add Syslog user
 groupadd -g 110 syslog
@@ -36,8 +35,6 @@ ln -s /container/config/cron.d /etc/cron.d
 apt-get -yq clean
 apt-get -yq autoremove
 rm -rf /var/lib/apt/lists/*
-# remove default Ldap DB
-rm -rf /var/lib/ldap /etc/ldap/slapd.d
 # cleanup useless cron jobs
 rm -f /etc/cron.daily/passwd /etc/cron.daily/dpkg /etc/cron.daily/apt-compat
 # truncate logs

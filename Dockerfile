@@ -14,11 +14,8 @@ COPY container /container
 
 RUN /container/build.sh 
 
-# Expose ldap and ldaps ports
-EXPOSE 53
 
 # bind9 data & conf in external volume
-# VOLUME /var/lib/ldap
 # LOGS  in external volume
 VOLUME /var/log
 # Configuration  in external volume
