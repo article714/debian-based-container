@@ -26,7 +26,7 @@ ln -s /container/config/rsyslog.conf /etc/rsyslog.conf
 rm -f /etc/logrotate.conf
 ln -s /container/config/logrotate.conf /etc/logrotate.conf
 
-rm -f /etc/crontab /etc/cron.d
+rm -rf /etc/crontab /etc/cron.d
 ln -s /container/config/crontab /etc/crontab
 ln -s /container/config/cron.d /etc/cron.d
 
