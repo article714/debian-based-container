@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
 
 #set -x
 
