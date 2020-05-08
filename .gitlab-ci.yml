@@ -12,8 +12,10 @@ build_image:
   stage: build
   tags:
     - shell
+  variables:
+    BUILD_OPTS: '--force-rm --no-cache'
   script:
-    - docker build  -t certificare/container-base-debian:${CONTAINER_BASE_VERSION} -t ${DOCKER_REGISTRY_HOST}/certificare/container-base-debian:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
+    - docker build ${BUILD_OPTS} -t certificare/container-base-debian:${CONTAINER_BASE_VERSION} -t ${DOCKER_REGISTRY_HOST}/certificare/container-base-debian:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
 
 #------------------------------------------
 # QCheck (TODO)
