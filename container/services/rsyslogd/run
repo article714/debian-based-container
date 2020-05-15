@@ -7,7 +7,8 @@ chown root.root /var/log
 touch /var/log/syslog
 touch /var/log/cron.log
 touch /var/log/daemon.log
-chown syslog.syslog /var/log/syslog
+chown -R root.syslog /var/log
+chmod g+rw /var/log
 if [ ! -d /var/run/rsyslog ]; then
     mkdir -p /var/run/rsyslog
     [ -z "syslog" ] || chown -R "syslog" /var/run/rsyslog
@@ -15,4 +16,4 @@ if [ ! -d /var/run/rsyslog ]; then
 fi
 umask 077
 # Run daeomon
-exec /usr/sbin/rsyslogd -n -f /etc/rsyslog.conf -iNONE
+exec /usr/sbin/rsyslogd -n -f /container/config/rsyslog.conf -iNONE

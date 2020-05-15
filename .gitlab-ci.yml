@@ -4,8 +4,8 @@ stages:
   - publish_images
 
 variables:
-  CONTAINER_BASE_VERSION: '0.2.0'
-  DOCKER_REGISTRY_HOST: '83l02d2f.gra5.container-registry.ovh.net'
+  CONTAINER_BASE_VERSION: "0.2.1"
+  DOCKER_REGISTRY_HOST: "83l02d2f.gra5.container-registry.ovh.net"
 
 #-----------------------------------------
 build_image:
@@ -13,7 +13,7 @@ build_image:
   tags:
     - shell
   variables:
-    BUILD_OPTS: '--force-rm --no-cache'
+    BUILD_OPTS: "--force-rm --no-cache"
   script:
     - docker build ${BUILD_OPTS} -t certificare/container-base-debian:${CONTAINER_BASE_VERSION} -t ${DOCKER_REGISTRY_HOST}/certificare/container-base-debian:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
 
@@ -30,7 +30,11 @@ test_image:
   tags:
     - docker
   script:
-    - echo "TODO"
+    - id
+    - ls -alrt /var/log/
+    - sv restart rsyslogd
+    - sv stop rsyslogd
+    - ls -alrt /var/log/
 
 #------------------------------------------
 # Publish
