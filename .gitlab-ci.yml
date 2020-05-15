@@ -32,10 +32,13 @@ test_image:
   script:
     - id
     - export SVDIR=/container/services
+    - runsvdir -P $SVDIR &
     - ls -alrt /var/log/
     - sv restart rsyslogd
     - sv stop rsyslogd
     - ls -alrt /var/log/
+    - sv status cron
+    - sv stop cron
 
 #------------------------------------------
 # Publish
