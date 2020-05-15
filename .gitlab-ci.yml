@@ -31,6 +31,7 @@ test_image:
     - docker
   script:
     - id
+    - export SVDIR=/container/services
     - ls -alrt /var/log/
     - sv restart rsyslogd
     - sv stop rsyslogd
