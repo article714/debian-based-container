@@ -4,8 +4,8 @@ stages:
   - publish_images
 
 variables:
-  CONTAINER_BASE_VERSION: '0.3.0'
-  DOCKER_REGISTRY_HOST: '83l02d2f.gra5.container-registry.ovh.net'
+  CONTAINER_BASE_VERSION: "0.3.0"
+  DOCKER_REGISTRY_HOST: "83l02d2f.gra5.container-registry.ovh.net"
 
 #-----------------------------------------
 build_image:
@@ -13,9 +13,9 @@ build_image:
   tags:
     - shell
   variables:
-    BUILD_OPTS: '--force-rm --no-cache'
+    BUILD_OPTS: "--force-rm --no-cache"
   script:
-    - docker build ${BUILD_OPTS} -t article714/container-base-debian:${CONTAINER_BASE_VERSION} -t ${DOCKER_REGISTRY_HOST}/article714/container-base-debian:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
+    - docker build ${BUILD_OPTS} -t article714/debian-based-container:${CONTAINER_BASE_VERSION} -t ${DOCKER_REGISTRY_HOST}/article714/debian-based-container:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
 
 #------------------------------------------
 # QCheck (TODO)
@@ -26,7 +26,7 @@ build_image:
 test_image:
   stage: tests
   image:
-    name: article714/container-base-debian:${CONTAINER_BASE_VERSION}
+    name: article714/debian-based-container:${CONTAINER_BASE_VERSION}
   tags:
     - docker
   script:
@@ -50,4 +50,4 @@ publish_image:
     refs:
       - production
   script:
-    - docker push ${DOCKER_REGISTRY_HOST}/article714/container-base-debian:${CONTAINER_BASE_VERSION}
+    - docker push ${DOCKER_REGISTRY_HOST}/article714/debian-based-container:${CONTAINER_BASE_VERSION}
