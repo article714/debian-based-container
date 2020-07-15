@@ -4,8 +4,8 @@ stages:
   - publish_images
 
 variables:
-  CONTAINER_BASE_VERSION: '0.3.0'
-  DOCKER_REGISTRY_HOST: '83l02d2f.gra5.container-registry.ovh.net'
+  CONTAINER_BASE_VERSION: "0.4.0"
+  DOCKER_REGISTRY_HOST: "83l02d2f.gra5.container-registry.ovh.net"
 
 #-----------------------------------------
 build_image:
@@ -13,7 +13,7 @@ build_image:
   tags:
     - shell
   variables:
-    BUILD_OPTS: '--force-rm --no-cache'
+    BUILD_OPTS: "--force-rm --no-cache"
   script:
     - docker build ${BUILD_OPTS} -t article714/debian-based-container:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
 

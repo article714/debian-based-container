@@ -2,6 +2,8 @@
 
 Basic image to build multi-process container based on Debian with basic tooling, including runit
 
+## Runit tooling
+
 ## Building a new version
 
 if X.X.X si the version you want to build (do not forget to set version in CI files: .gitlab-ci.yml and .travis.yml)
