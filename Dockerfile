@@ -17,10 +17,15 @@ COPY container /container
 RUN /container/build.sh
 
 
-# LOGS  in external volume
-VOLUME /var/log
-# Configuration  in external volume
-VOLUME /container/config
+# WARNING WARNING
+#----------------------------------------
+#
+# Volumes should only be declared on "leaves", i.e. contains with no children (FROM:....)
+#
+#       LOGS  in external volume
+#           VOLUME /var/log
+#       Configuration  in external volume
+#           VOLUME /container/config
 
 # entrypoint  & default command
 ENTRYPOINT [ "/container/entrypoint.sh" ]
