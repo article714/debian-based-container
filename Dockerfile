@@ -17,7 +17,6 @@ COPY container /container
 RUN /container/build.sh
 
 
-# bind9 data & conf in external volume
 # LOGS  in external volume
 VOLUME /var/log
 # Configuration  in external volume
