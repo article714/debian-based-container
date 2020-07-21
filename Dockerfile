@@ -5,6 +5,8 @@ LABEL maintainer="Certificare C. Guychard<christophe@certificare.fr>"
 
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
+# directory that contains service configurations
+ENV SVDIR /container/services
 
 # Container tooling
 
@@ -12,7 +14,7 @@ COPY container /container
 
 # container building
 
-RUN /container/build.sh 
+RUN /container/build.sh
 
 
 # bind9 data & conf in external volume
