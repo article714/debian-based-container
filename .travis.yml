@@ -7,5 +7,5 @@ services:
 
 script:
   - export BUILD_OPTS='--force-rm --no-cache'
-  - export CONTAINER_BASE_VERSION='0.4.0'
+  - export CONTAINER_BASE_VERSION='0.5.0'
   - docker build ${BUILD_OPTS} -t article714/debian-based-container:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
