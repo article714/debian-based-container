@@ -20,9 +20,6 @@ chmod 775 /var/log
 #--
 # config files redirection
 
-mv /etc/resolv.conf /container/config
-ln -s /container/config/resolv.conf /etc/resolv.conf
-
 rm -f /etc/rsyslog.conf
 ln -s /container/config/rsyslog.conf /etc/rsyslog.conf
 
