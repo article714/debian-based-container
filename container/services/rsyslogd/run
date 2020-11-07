@@ -11,6 +11,8 @@ chgrp -R "syslog" /var/log/cron.log
 touch /var/log/daemon.log
 chgrp -R "syslog" /var/log/daemon.log
 chmod -R g+rw /var/log/
+chgrp -R syslog /var/log
+chmod -R g+rw /var/log/
 if [ ! -d /var/run/rsyslog ]; then
     mkdir -p /var/run/rsyslog
     [ -z "syslog" ] || chown -R "syslog" /var/run/rsyslog
