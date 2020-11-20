@@ -38,7 +38,4 @@ rm -rf /var/lib/apt/lists/*
 # cleanup useless cron jobs
 rm -f /etc/cron.daily/passwd /etc/cron.daily/dpkg /etc/cron.daily/apt-compat
 # truncate logs
-truncate --size 0 /var/log/lastlog
-truncate --size 0 /var/log/faillog
-truncate --size 0 /var/log/dpkg.log
-truncate --size 0 /var/log/syslog
+find /var/log -type f -exec truncate --size 0 {} \;
