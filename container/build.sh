@@ -8,7 +8,7 @@ localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 export LANG=en_US.utf8
 
 # Install needed runit/rsyslog packages
-LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends runit rsyslog logrotate
+LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends runit rsyslog logrotate python3
 
 # Add Syslog user
 groupadd -g 110 syslog
