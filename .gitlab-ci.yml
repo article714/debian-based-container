@@ -11,7 +11,6 @@ stages:
   - publish
 
 variables:
-  IMAGE_VERSION: '0.8.0'
   IMAGE_NAME: 'debian-based-container'
 
 #-----------------------------------------
