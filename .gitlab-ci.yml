@@ -1,33 +1,34 @@
+include:
+  - project: 'article714/build-tools'
+    ref: master
+    file: 'ci/docker-job-templates.yml'
+
 stages:
   - build
-  - tests
-  - publish_images
+  - qcheck
+  - security
+  - test
+  - publish
 
 variables:
-  CONTAINER_BASE_VERSION: '0.7.0'
+  IMAGE_VERSION: '0.7.0'
+  IMAGE_NAME: 'debian-based-container'
 
 #-----------------------------------------
 build_image:
-  stage: build
-  tags:
-    - shell
-  variables:
-    BUILD_OPTS: '--network=internal_bridge --force-rm --no-cache'
-  script:
-    - docker build ${BUILD_OPTS} -t article714/debian-based-container:${CONTAINER_BASE_VERSION} --build-arg CONTAINER_BASE_VERSION=${CONTAINER_BASE_VERSION} .
+  extends: .build_image
 
 #------------------------------------------
 # QCheck (TODO)
 
 #------------------------------------------
+# Security Scanners (TODO)
+
+#------------------------------------------
 # Tests
 
 test_image:
-  stage: tests
-  image:
-    name: article714/debian-based-container:${CONTAINER_BASE_VERSION}
-  tags:
-    - docker
+  extends: .test_image
   script:
     - id
     - export SVDIR=/container/services
@@ -39,22 +40,20 @@ test_image:
     - sv status cron
     - sv stop cron
 
-publish_image:
-  stage: publish_images
-  tags:
-    - shell
+#------------------------------------------
+# Publish
+
+publish_release:
+  extends: .publish_images
+  variables:
+    IMAGE_TAG: ${CI_COMMIT_TAG}
+  rules:
+    - if: $CI_COMMIT_TAG
+
+publish_latest:
+  extends: .publish_images
+  variables:
+    IMAGE_TAG: 'latest'
   only:
     refs:
       - production
-  script:
-    - docker push article714/debian-based-container:${ETCD_CONTAINER_VERSION}
-
-publish_latest_image:
-  stage: publish_images
-  tags:
-    - shell
-  only:
-    refs:
-      - master
-  script:
-    - docker push article714/debian-based-container:latest

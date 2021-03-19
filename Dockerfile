@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 LABEL maintainer="Certificare C. Guychard<christophe@certificare.fr>"
 
-
+ARG IMAGE_VERSION
 
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
