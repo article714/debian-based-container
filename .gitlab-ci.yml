@@ -4,7 +4,7 @@ stages:
   - publish_images
 
 variables:
-  CONTAINER_BASE_VERSION: '0.6.0'
+  CONTAINER_BASE_VERSION: '0.7.0'
 
 #-----------------------------------------
 build_image:
@@ -38,3 +38,23 @@ test_image:
     - ls -alrt /var/log/
     - sv status cron
     - sv stop cron
+
+publish_image:
+  stage: publish_images
+  tags:
+    - shell
+  only:
+    refs:
+      - production
+  script:
+    - docker push article714/debian-based-container:${ETCD_CONTAINER_VERSION}
+
+publish_latest_image:
+  stage: publish_images
+  tags:
+    - shell
+  only:
+    refs:
+      - master
+  script:
+    - docker push article714/debian-based-container:latest
